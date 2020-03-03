@@ -4,8 +4,8 @@ from django.db import models
 
 class Cliente(models.Model):
     SEXO_CHOICES = (
-        ("F", "Feminino")
-        ("M", "Masculino")
+        ("F", "Feminino"),
+        ("M", "Masculino"),
         ("N", "Nenhuma das opções")
     )
 
