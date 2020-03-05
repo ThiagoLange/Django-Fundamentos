@@ -1,31 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>TW Clientes</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-</head>
-<body>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Nome: </th>
-            <th>Data de Nascimento: </th>
-            <th>Sexo: </th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for i in clientes %}
-        <tr>
-            <td>{{i.nome}}</td>
-            <td>{{i.data_nascimento}}</td>
-            <td>{{i.sexo}}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+{% extends "clientes/base.html" %}
 
-<a href="{% url 'cadastrar_cliente' %}"><button class="btn btn-primary">Cadastrar</button></a>
+{% block titulo %}
+Listagem de Clientes
+{% endblock titulo %}
 
-</body>
-</html>
+{% block conteudo%}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome: </th>
+                <th>Data de Nascimento: </th>
+                <th>Sexo: </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in clientes %}
+            <tr>
+                <td><a href="{% url 'listar_cliente_id' i.id %}">{{i.nome}}</a></td>
+                <td>{{i.data_nascimento | date:"d M Y"}}</td>
+                <td>{{i.sexo}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'cadastrar_cliente' %}"><button class="btn btn-primary">Cadastrar</button></a>
+{% endblock conteudo%}
